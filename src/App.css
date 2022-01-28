@@ -16,3 +16,28 @@
     width: 110%;
   }
 } */
+
+.react-tabs__tab-list {
+  border-bottom: 0ch;
+}
+
+.react-tabs__tab--selected {
+  background-color: rgb(185, 199, 237);
+  margin: 5px;
+  text-decoration-color: rbg(42, 80, 184);
+}
+
+.react-tabs__tab {
+  text-decoration-color: rbg(42, 80, 184);
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid #aaa;
+  margin: 5px;
+}
+
+#submit_btn {
+  background-color: rgb(85, 124, 231);
+  color: rgb(255, 255, 255);
+  height: fit-content;
+  font-size: 1.15rem;
+  padding: 4px 8px 4px 8px !important;
+}
