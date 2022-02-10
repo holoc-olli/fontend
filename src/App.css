@@ -22,9 +22,9 @@
 }
 
 .react-tabs__tab--selected {
-  background-color: rgb(185, 199, 237);
+  background-color: #4498dd;
   margin: 5px;
-  text-decoration-color: rbg(42, 80, 184);
+  color: #e4e7eb;
 }
 
 .react-tabs__tab {
@@ -40,4 +40,17 @@
   height: fit-content;
   font-size: 1.15rem;
   padding: 4px 8px 4px 8px !important;
+}
+
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 400;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+
+body {
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; 
+}
+h1 {
+  color: green;
 }
