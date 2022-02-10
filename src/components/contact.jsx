@@ -290,7 +290,7 @@ export const Contact = (props) => {
           <button onClick={hanleCK} className={!active3 ? 'fb-button' : 'fb-button-enable'} >Công kích đối tượng ?</button>{' '}
           <button onClick={hanldeCT} className={!active4 ? 'fb-button' : 'fb-button-enable'} >Nhạy cảm chính trị ?</button>{' '}
           <button onClick={hanldeClean} className={!active5 ? 'fb-button' : 'fb-button-enable'} >Câu sạch ?</button>{' '}</div>
-        <div className='row' style={{ width: "fit-content", backgroundColor: "lightgrey" }}>{bad_content}</div>
+        {/* <div className='row' style={{ width: "fit-content", backgroundColor: "lightgrey" }}>{bad_content}</div> */}
         <div className='row' style={{textAlign:"center", backgroundColor:"#f5f5f7", justifyContent: "center", marginTop:"0.5em"}}>
           <h3 style={{width:"100%", alignItems:"center", textAlign:"center", marginTop:"0.5em", color:"#351c75"}}>{resultText}</h3>
           <a href="#" onClick={hanldeDetail} style={{width:"fit-content", alignItems:"center", textAlign:"center", border:"none", display: detailBtn}}>{detailBtnText}</a>
