@@ -261,7 +261,7 @@ export const Contact = (props) => {
                 </div>
                 <div id="success"></div>
                 <div className='row' style={{ marginLeft: "0em" , height:"40px", alignItems:"center"}}>
-                  <button style={{justifyContent:"center", alignContent:"center", width:"100px", textAlign:"center", fontWeight:"bold", marginRight:"20px", height:"40px", display: scan_button_dp, backgroundColor:"white", border:"1px solid #0070c9", color:"#0070c9", fontSize:"12px", alignItems:"center", borderRadius:"8%"}} id='submit_btn' type="submit">
+                  <button style={{justifyContent:"center", alignContent:"center", width:"100px", textAlign:"center", fontWeight:"bold", marginRight:"20px", height:"40px", display: scan_button_dp, backgroundColor:"white", border:"1px solid #0070c9", color:"#0070c9", fontSize:"12px", alignItems:"center", borderRadius:"6%"}} id='submit_btn' type="submit">
                     Quét 
                   </button>
                   <a href='#' onClick={handleComment} style={{fontSize:"1rem", color: "GrayText" , backgroundColor: "white", display: fb_display, fontSize:"8", justifyContent:"center", textAlign:"center", alignItems:"center"}}>
