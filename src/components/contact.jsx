@@ -88,6 +88,7 @@ export const Contact = (props) => {
   const [resultText, SetResultText] = useState("Chưa nhập văn bản")
   const [detailBtn, SetDetailBtn] = useState("none")
   const [detailBtnText, SetDetailText] = useState("Xem chi tiết")
+  const [QStatus, setQstatus] = useState(false)
 
   const handleComment = (e) => {
     if (displayComment == "None") {
@@ -153,6 +154,7 @@ export const Contact = (props) => {
   }
 
   const handleChange = (e) => {
+    setQstatus(false)
     const { name, value } = e.target;
     const word_array = value.split(' ');
     if (word_array.length > 1500) {
@@ -194,6 +196,7 @@ export const Contact = (props) => {
         setFBDisplay("flex")
         SetChecked(true)
         SetDetailBtn("flex")
+        setQstatus(true)
         if (value > 50) 
         {
           SetResultText(result_label[1])
@@ -261,7 +264,7 @@ export const Contact = (props) => {
                 </div>
                 <div id="success"></div>
                 <div className='row' style={{ marginLeft: "0em" , height:"40px", alignItems:"center"}}>
-                  <button style={{justifyContent:"center", alignContent:"center", width:"100px", textAlign:"center", fontWeight:"bold", marginRight:"20px", height:"40px", display: scan_button_dp, backgroundColor:"white", border:"1px solid #0070c9", color:"#0070c9", fontSize:"12px", alignItems:"center", borderRadius:"6%"}} id='submit_btn' type="submit">
+                  <button disabled={QStatus} style={{justifyContent:"center", alignContent:"center", width:"100px", textAlign:"center", fontWeight:"bold", marginRight:"20px", height:"40px", display: scan_button_dp, backgroundColor:"white", border:"1px solid #0070c9", color:"#0070c9", fontSize:"12px", alignItems:"center", borderRadius:"6%"}} id='submit_btn' type="submit">
                     Quét 
                   </button>
                   <a href='#' onClick={handleComment} style={{fontSize:"1rem", color: "GrayText" , backgroundColor: "white", display: fb_display, fontSize:"8", justifyContent:"center", textAlign:"center", alignItems:"center"}}>
@@ -277,19 +280,19 @@ export const Contact = (props) => {
               <div style={{ backgroundColor: "lightgrey", alignItems: "center", textAlign: "center", borderColor: "lightgrey", border: "1px", borderRadius: "5px", padding: "5%", margin: "1%" }}>
                 <p style={{ color: "black" }}>Chọn tài liệu</p>
                 <button type="submit" className="btn btn-custom btn-lg" style={{ color: "white", backgroundColor: "blue" }}>
-                  Chọn tệp từ máy tính của bạn
+                  Chưa hoàn thiện tính năng này
                 </button>
               </div>
             </TabPanel>
           </Tabs>
         </div>
         <div className='row' style={{ width: "100%", display: displayComment }}>
-          <button onClick={handleTPL} className={!active0 ? 'fb-button' : 'fb-button-enable'} >Trái Pháp Luật ?</button>{' '}
-          <button onClick={handleTT} className={!active1 ? 'fb-button' : 'fb-button-enable'}>Thô Tục ?</button>{' '}
+          <button onClick={handleTPL} className={!active0 ? 'fb-button' : 'fb-button-enable'} >Nội dung trái pháp luật ?</button>{' '}
+          <button onClick={handleTT} className={!active1 ? 'fb-button' : 'fb-button-enable'}>Nội dung thô tục ?</button>{' '}
           <button onClick={handleSex} className={!active2 ? 'fb-button' : 'fb-button-enable'} >Liên quan Sex ?</button>{' '}
-          <button onClick={hanleCK} className={!active3 ? 'fb-button' : 'fb-button-enable'} >Công kích đối tượng ?</button>{' '}
-          <button onClick={hanldeCT} className={!active4 ? 'fb-button' : 'fb-button-enable'} >Nhạy cảm chính trị ?</button>{' '}
-          <button onClick={hanldeClean} className={!active5 ? 'fb-button' : 'fb-button-enable'} >Câu sạch ?</button>{' '}</div>
+          <button onClick={hanleCK} className={!active3 ? 'fb-button' : 'fb-button-enable'} >Mang tính chất công kích ?</button>{' '}
+          <button onClick={hanldeCT} className={!active4 ? 'fb-button' : 'fb-button-enable'} >Nội dung chính trị nhạy cảm?</button>{' '}
+          <button onClick={hanldeClean} className={!active5 ? 'fb-button' : 'fb-button-enable'} >Nội dung sạch ?</button>{' '}</div>
         {/* <div className='row' style={{ width: "fit-content", backgroundColor: "lightgrey" }}>{bad_content}</div> */}
         <div className='row' style={{textAlign:"center", backgroundColor:"#f5f5f7", justifyContent: "center", marginTop:"0.5em"}}>
           <h3 style={{width:"100%", alignItems:"center", textAlign:"center", marginTop:"0.5em", color:"#351c75"}}>{resultText}</h3>
