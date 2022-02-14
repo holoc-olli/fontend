@@ -89,6 +89,77 @@ export const Contact = (props) => {
   const [detailBtn, SetDetailBtn] = useState("none")
   const [detailBtnText, SetDetailText] = useState("Xem chi tiết")
   const [QStatus, setQstatus] = useState(false)
+  const [result_wrapper, setResultWrapper] = useState("flex")
+  const [TTdef, showTTdef] = useState("none")
+  const [PLdef, showPLdef] = useState("none")
+  const [SEXdef, showSEXdef] = useState("none")
+  const [CTdef, showCTdef] = useState("none")
+  const [CKdef, showCKdef] = useState("none")
+
+  const changeCTdef = (e) =>
+  {
+    if (CTdef == "none") {
+      showCTdef("flex")
+    } else if (CTdef == "flex") {
+      showCTdef("none")
+    }
+  }
+
+  const changePLdef = (e) => 
+  {
+    if (PLdef == "none") {
+      showPLdef("flex")
+    } else if (PLdef == "flex") {
+      showPLdef("none")
+    }
+  }
+
+
+  const changeTTdef = (e) => {
+    if (TTdef == "none") {
+      showTTdef("flex")
+    } else if (TTdef == "flex") {
+      showTTdef("none")
+    }
+  }
+
+  const changeSEXdef = (e) => 
+  {
+    if (SEXdef == "none") {
+      showSEXdef("flex")
+    } else if (SEXdef == "flex") {
+      showSEXdef("none")
+    }
+  }
+
+  const changeCKdef = (e) =>
+  {
+    if (CKdef == "none") {
+      showCKdef("flex")
+    } else if (CKdef == "flex") {
+      showCKdef("none")
+    }
+  }
+
+  const hanldeSetTabIndex = (e) => {
+    setTabIndex(e)
+    if (e == 1) {
+      setResultWrapper("none")
+      if (displayComment == "flex") {
+        setDisplayComment("none")
+        setCancel("none")
+        setFBDisplay("none")
+        SetScanDP("flex")
+        SetTextArea(false)
+        SetDetailBtn("none")
+        setDisplay("none")
+        setDisplayComment("none")
+      }
+    }
+    if (e == 0) {
+      setResultWrapper("flex")
+    }
+  }
 
   const handleComment = (e) => {
     if (displayComment == "None") {
@@ -140,14 +211,12 @@ export const Contact = (props) => {
     SetActive4(false)
     SetActive5(!active5)
   }
-  
+
   const hanldeDetail = (e) => {
-    if (detailBtnText == "Xem chi tiết")
-    {
+    if (detailBtnText == "Xem chi tiết") {
       setDisplay("flex")
       SetDetailText("Gom gọn")
-    } else if (detailBtnText == "Gom gọn")
-    {
+    } else if (detailBtnText == "Gom gọn") {
       SetDetailText("Xem chi tiết")
       setDisplay("none")
     }
@@ -197,10 +266,9 @@ export const Contact = (props) => {
         SetChecked(true)
         SetDetailBtn("flex")
         setQstatus(true)
-        if (value > 50) 
-        {
+        if (value > 50) {
           SetResultText(result_label[1])
-        } else{
+        } else {
           SetResultText(result_label[0])
         }
       }).catch(error => {
@@ -232,19 +300,24 @@ export const Contact = (props) => {
       })
   };
   return (
-    <div  style={{paddingLeft:"1em", paddingRight:"1em"}}>
+    <div style={{ paddingLeft: "1em", paddingRight: "1em" }}>
       <div id="contact" className="container" >
-        <div className="row" style={{ width: "100%", height: "100%", paddingTop: "5%" }}>
-          <h1 style={{ color: "red", textAlign:"center", width:"100%", fontWeight:"bold"}}>OLLI JSC</h1>
-          <h5 style={{ width: "100%", textAlign:"center" }}>
+        <div className="row" style={{ width: "100%", height: "100%", paddingTop: "5%", alignItems: "center", textAlign: "center", justifyContent: "center" }}>
+          <a href='https://olli.vn/' style={{ color: "red", textAlign: "center", width: "fit-content", fontWeight: "bold", fontSize: "48px" }}>OLLI AI</a>
+          <h5 style={{ width: "100%", textAlign: "center", fontWeight: "bold" }}>
             Quét nội dung nhạy cảm
           </h5>
+          {/* <div style={{width:"100%"}}>
+          <select name="cars" id="cars" style={{ width:"fit-content", fontSize:"28px", textAlign:"center", justifyContent:"center"}}>
+            <option value="volvo">Quét nội dung nhạy cảm</option>
+            <option value="saab">Chuyển đổi văn bản thành giọng nói</option>
+          </select></div> */}
         </div>
-        <div className='row'>
-          <Tabs selectedIndex={tabIndex} onSelect={index => setTabIndex(index)} style={{ width: "100%" }}>
+        <div className='row' style={{ marginTop: "5%" }}>
+          <Tabs selectedIndex={tabIndex} onSelect={index => hanldeSetTabIndex(index)} style={{ width: "100%" }}>
             <TabList>
-              <Tab style={{margin:"0em", marginRight:"1em", fontSize:"14px", fontWeight:"bold"}}>Văn Bản</Tab>
-              <Tab style={{margin:"0em", fontSize:"14px", fontWeight:"bold"}}>Tài liệu</Tab>
+              <Tab style={{ margin: "0em", marginRight: "1em", fontSize: "14px", fontWeight: "bold" }}>Văn bản</Tab>
+              <Tab style={{ margin: "0em", fontSize: "14px", fontWeight: "bold" }}>Tài liệu</Tab>
             </TabList>
             <TabPanel>
               <form ref={el => this.myFormRef = el} name="sentMessage" validate onSubmit={handleSubmit} style={{ width: "100%" }}>
@@ -263,23 +336,23 @@ export const Contact = (props) => {
                   <p className="help-block text-danger"></p>
                 </div>
                 <div id="success"></div>
-                <div className='row' style={{ marginLeft: "0em" , height:"40px", alignItems:"center"}}>
-                  <button disabled={QStatus} style={{justifyContent:"center", alignContent:"center", width:"100px", textAlign:"center", fontWeight:"bold", marginRight:"20px", height:"40px", display: scan_button_dp, backgroundColor:"white", border:"1px solid #0070c9", color:"#0070c9", fontSize:"12px", alignItems:"center", borderRadius:"6%"}} id='submit_btn' type="submit">
-                    Quét 
+                <div className='row' style={{ marginLeft: "0em", height: "40px", alignItems: "center" }}>
+                  <button disabled={QStatus} style={{ justifyContent: "center", alignContent: "center", width: "100px", textAlign: "center", fontWeight: "bold", marginRight: "20px", height: "40px", display: scan_button_dp, backgroundColor: "white", border: "1px solid #0070c9", color: "#0070c9", fontSize: "12px", alignItems: "center", borderRadius: "5px 5px 5px 5px" }} id='submit_btn' type="submit">
+                    Quét
                   </button>
-                  <a href='#' onClick={handleComment} style={{fontSize:"1rem", color: "GrayText" , backgroundColor: "white", display: fb_display, fontSize:"8", justifyContent:"center", textAlign:"center", alignItems:"center"}}>
+                  <a href='#' onClick={handleComment} style={{ fontSize: "1rem", color: "GrayText", backgroundColor: "white", display: fb_display, fontSize: "8", justifyContent: "center", textAlign: "center", alignItems: "center" }}>
                     {fbText}
                   </a>
-                  <button onClick={handleComment} style={{ color: "blue", backgroundColor: "white", display: cancelBtn, margin: "0em", border:"none" }}>
+                  <button onClick={handleComment} style={{ color: "blue", backgroundColor: "white", display: cancelBtn, margin: "0em", border: "none" }}>
                     Hủy
                   </button>
-                  </div>
+                </div>
               </form>
             </TabPanel>
             <TabPanel>
-              <div style={{ backgroundColor: "lightgrey", alignItems: "center", textAlign: "center", borderColor: "lightgrey", border: "1px", borderRadius: "5px", padding: "5%", margin: "1%" }}>
-                <p style={{ color: "black" }}>Chọn tài liệu</p>
-                <button type="submit" className="btn btn-custom btn-lg" style={{ color: "white", backgroundColor: "blue" }}>
+              <div style={{ backgroundColor: "lightgrey", alignItems: "center", textAlign: "center", borderColor: "lightgrey", border: "1px", borderRadius: "5px", padding: "5%" }}>
+                <p style={{ color: "black", fontWeight: "bold" }}>Chọn tài liệu</p>
+                <button type="submit" style={{ color: "white", backgroundColor: "blue", justifyContent: "center", border: "none", padding: "1%", borderRadius: "5px 5px 5px 5px", fontWeight: "bold" }}>
                   Chưa hoàn thiện tính năng này
                 </button>
               </div>
@@ -294,20 +367,20 @@ export const Contact = (props) => {
           <button onClick={hanldeCT} className={!active4 ? 'fb-button' : 'fb-button-enable'} >Nội dung chính trị nhạy cảm?</button>{' '}
           <button onClick={hanldeClean} className={!active5 ? 'fb-button' : 'fb-button-enable'} >Nội dung sạch ?</button>{' '}</div>
         {/* <div className='row' style={{ width: "fit-content", backgroundColor: "lightgrey" }}>{bad_content}</div> */}
-        <div className='row' style={{textAlign:"center", backgroundColor:"#f5f5f7", justifyContent: "center", marginTop:"0.5em"}}>
-          <h3 style={{width:"100%", alignItems:"center", textAlign:"center", marginTop:"0.5em", color:"#351c75"}}>{resultText}</h3>
-          <a href="#" onClick={hanldeDetail} style={{width:"fit-content", alignItems:"center", textAlign:"center", border:"none", display: detailBtn}}>{detailBtnText}</a>
+        <div className='row' style={{ textAlign: "center", backgroundColor: "#f5f5f7", justifyContent: "center", marginTop: "0.5em", display: result_wrapper, borderRadius: "5px 5px 5px 5px", border: "1px solid white" }}>
+          <h3 style={{ width: "100%", alignItems: "center", textAlign: "center", marginTop: "0.5em", color: "#351c75" }}>{resultText}</h3>
+          <a href="#" onClick={hanldeDetail} style={{ width: "fit-content", alignItems: "center", textAlign: "center", border: "none", display: detailBtn }}>{detailBtnText}</a>
         </div>
         <div id="display_result" className='row' style={{ display: display_result }}>
-          <div className='row' style={{ width: "100%", marginTop: "1rem", justifyContent:"center", paddingLeft:"1rem" }}>
+          <div className='row' style={{ width: "100%", marginTop: "1rem", justifyContent: "center", paddingLeft: "1rem" }}>
             <div style={{ width: "100%" }}>
               <ProgressBar completed={score} maxCompleted={100} /></div>
             {/* <div style={{ width: "100%" }}>
               <MultiColorProgressBar completed={score} readings={readings}/></div> */}
-            <p style={{ width: "100%", marginTop: "1rem",  paddingLeft:"0.1rem"  }}>Mức độ nhạy cảm</p>
+            <p style={{ width: "100%", marginTop: "1rem", paddingLeft: "0.1rem", fontWeight: "bold" }}>Khả năng nhạy cảm</p>
           </div>
           <div className='row' style={{ width: "100%", margin: "3%" }}>
-            <div className='col'>
+            <div className='col' style={{ alignItems: 'center', textAlign: "center", justifyContent: "center", height: "fit-content" }}>
               <Circle
                 className='row'
                 animate={true} // Boolean: Animated/Static progress
@@ -328,9 +401,10 @@ export const Contact = (props) => {
                 showPercentageSymbol={true} // Boolean: Show/hide only the "%" symbol.
                 style={{ width: "80%" }}
               />
-              <p className='row' style={{ color: 'black', alignItems: 'center', textAlign: "center", justifyContent:"center" }}>Pháp Luật</p>
+              <a onClick={changePLdef} style={{ color: 'black', alignItems: 'center', textAlign: "center", justifyContent: "center" }}>Pháp Luật</a>
+              <p style={{ display: PLdef, borderRadius: "5px 5px 5px 5px", border: "1px solid black" }}>Những nội dung có hành vi, khuynh hướng vi phạm pháp luật: liên quan tới chất gây nghiện (cần sa, ma túy, thuốc lá, rượu bia), cực đoan (tự sát), bạo lực (chém giết), bạo động (biểu tình), các vũ khí nguy hiểm (súng, mã tấu, dao), cá độ, dịch bệnh, tống tiền, lừa đảo, đánh bài, mại dâm,.... Những nội dung cổ súy, cổ vũ cho các hành động vi phạm pháp luật Những nội dung liên quan đến chất kích thích, chất gây nghiện</p>
             </div>
-            <div className='col'>
+            <div className='col' style={{ alignItems: 'center', textAlign: "center", justifyContent: "center", height: "fit-content" }}>
               <Circle
                 animate={true} // Boolean: Animated/Static progress
                 animationDuration="1s" //String: Length of animation
@@ -349,9 +423,10 @@ export const Contact = (props) => {
                 showPercentage={true} // Boolean: Show/hide percentage.
                 showPercentageSymbol={true} // Boolean: Show/hide only the "%" symbol.
               />
-              <p style={{ color: 'black', alignItems: 'center', textAlign: "center" }}>Thô Tục</p>
+              <a onClick={changeTTdef} style={{ color: 'black', alignItems: 'center', textAlign: "center", justifyContent: "center"  }}>Thô Tục</a>
+              <p style={{ display: TTdef, borderRadius: "5px 5px 5px 5px", border: "1px solid black" }}>Những câu thô tục tồn tại các đối tượng (danh từ) như: Đảng, Nhà nước, bộ máy, hoặc các chức vụ trong bộ máy chính trị: chủ tịch nước, thủ tướng. Những động từ mạnh như: “ăn hối lộ”, “gánh nợ”, “vơ vét”, “tham ô” mà mang hàm ý tới chính trị thì nên xem xét. Những câu bàn luận tiêu cực về chính sách an ninh, đối ngoại và quốc phòng, xuất hiện các địa điểm gây tranh cãi: biển Đông, Hoàng Sa, Trường Sa, Móng Cái (thác Bản Giốc, Ải Nam Quan, Hữu Nghị Quan), Cam Ranh, Tây Nguyên...</p>
             </div>
-            <div className='col'>
+            <div className='col' style={{ alignItems: 'center', textAlign: "center", justifyContent: "center", height: "fit-content" }}>
               <Circle
                 animate={true} // Boolean: Animated/Static progress
                 animationDuration="1s" //String: Length of animation
@@ -370,11 +445,12 @@ export const Contact = (props) => {
                 showPercentage={true} // Boolean: Show/hide percentage.
                 showPercentageSymbol={true} // Boolean: Show/hide only the "%" symbol.
               />
-              <p style={{ color: 'black', alignItems: 'center', textAlign: "center", justifyContent:"center" }}>SEX</p>
+              <a onClick={changeSEXdef} style={{ color: 'black', alignItems: 'center', textAlign: "center", justifyContent: "center", height: "fit-content"  }}>SEX</a>
+              <p style={{ display: SEXdef, borderRadius: "5px 5px 5px 5px", border: "1px solid black" }}>Những câu hoặc hội thoại chứa nội dung chủ quan(*) bao gồm nhưng không chỉ gồm các nội dung sau: lời lẽ khêu gợi, ám chỉ hoặc trực tiếp nói về tình dục, nội dung thảo luận về chủ đề người lớn gây phản cảm, thiếu tôn trọng hoặc gây tranh cãi, bao gồm nhưng không chỉ gồm các chủ đề: sex, khiêu dâm, tình dục, dụng cụ kích dục, mô tả các bộ phận cơ thể mang tính gợi dục, dịch vụ mại dâm...</p>
             </div>
           </div>
-          <div className='row' style={{ width: "100%", marginTop: "1%", justifyContent:"center" }}>
-            <div className='col-sm-4'>
+          <div className='row' style={{ width: "100%", marginTop: "1%", justifyContent: "center", height: "fit-content", textAlign: "center" }}>
+            <div className='col-sm-4' style={{height: "fit-content"}} >
               <Circle
                 animate={true} // Boolean: Animated/Static progress
                 animationDuration="1s" //String: Length of animation
@@ -393,9 +469,10 @@ export const Contact = (props) => {
                 showPercentage={true} // Boolean: Show/hide percentage.
                 showPercentageSymbol={true} // Boolean: Show/hide only the "%" symbol.
               />
-              <p style={{ color: 'black', alignItems: 'center', textAlign: "center", justifyContent:"center" }}>Công Kích</p>
+              <a onClick={changeCKdef} style={{ alignItems: 'center', textAlign: "center", justifyContent: "center", height: "fit-content" }}>Công Kích</a>
+              <p style={{ display: CKdef, borderRadius: "5px 5px 5px 5px", border: "1px solid black" }}>Các nội dung mang tính chủ quan(*) công kích cá nhân (có tên người, đơn vị, tổ chức) ảnh hưởng đến Quyền công dân, bao gồm nhưng không chỉ gồm các nội dung nhạo báng, chửi bới, đe dọa, quấy rối, bắt nạt, hạ thấp nhân phẩm, làm nhục, tống tiền...</p>
             </div>
-            <div className='col-sm-4'>
+            <div className='col-sm-4' style={{height: "fit-content"}} >
               <Circle
                 animate={true} // Boolean: Animated/Static progress
                 animationDuration="1s" //String: Length of animation
@@ -414,7 +491,8 @@ export const Contact = (props) => {
                 showPercentage={true} // Boolean: Show/hide percentage.
                 showPercentageSymbol={true} // Boolean: Show/hide only the "%" symbol.
               />
-              <p style={{ color: 'black', alignItems: 'center', textAlign: "center", justifyContent:"center" }}>Chính trị</p>
+              <a onClick={changeCTdef} style={{ alignItems: 'center', textAlign: "center", justifyContent: "center", height: "fit-content" }}>Chính trị</a>
+              <p style={{display:CTdef, borderRadius: "5px 5px 5px 5px", border: "1px solid black"}}>Những câu thô tục tồn tại các đối tượng (danh từ) như: Đảng, Nhà nước, bộ máy, hoặc các chức vụ trong bộ máy chính trị: chủ tịch nước, thủ tướng. Những động từ mạnh như: “ăn hối lộ”, “gánh nợ”, “vơ vét”, “tham ô” mà mang hàm ý tới chính trị thì nên xem xét. Những câu bàn luận tiêu cực về chính sách an ninh, đối ngoại và quốc phòng, xuất hiện các địa điểm gây tranh cãi: biển Đông, Hoàng Sa, Trường Sa, Móng Cái (thác Bản Giốc, Ải Nam Quan, Hữu Nghị Quan), Cam Ranh, Tây Nguyên...</p>
             </div>
           </div>
           <div className="row text-center" style={{ marginTop: "10%", alignItems: "center", width: "100%" }}>
